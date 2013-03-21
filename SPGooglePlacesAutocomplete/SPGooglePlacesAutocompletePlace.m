@@ -10,7 +10,10 @@
 #import "SPGooglePlacesPlaceDetailQuery.h"
 
 @interface SPGooglePlacesAutocompletePlace()
-
+@property (nonatomic, retain, readwrite) NSString *name;
+@property (nonatomic, retain, readwrite) NSString *reference;
+@property (nonatomic, retain, readwrite) NSString *identifier;
+@property (nonatomic, readwrite) SPGooglePlacesAutocompletePlaceType type;
 @end
 
 @implementation SPGooglePlacesAutocompletePlace
@@ -84,6 +87,27 @@
     [identifier release];
     [geocoder release];
     [super dealloc];
+}
+
+#pragma mark - NSCoding
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        self.name = [aDecoder decodeObjectForKey:@"description"];
+        self.reference = [aDecoder decodeObjectForKey:@"reference"];
+        self.identifier = [aDecoder decodeObjectForKey:@"id"];
+        self.type = SPPlaceTypeGeocode;
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.name forKey:@"description"];
+    [aCoder encodeObject:self.reference forKey:@"reference"];
+    [aCoder encodeObject:self.identifier forKey:@"id"];
+    [aCoder encodeInt:self.type forKey:@"type"];
 }
 
 @end
