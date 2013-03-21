@@ -10,10 +10,7 @@
 #import "SPGooglePlacesPlaceDetailQuery.h"
 
 @interface SPGooglePlacesAutocompletePlace()
-@property (nonatomic, retain, readwrite) NSString *name;
-@property (nonatomic, retain, readwrite) NSString *reference;
-@property (nonatomic, retain, readwrite) NSString *identifier;
-@property (nonatomic, readwrite) SPGooglePlacesAutocompletePlaceType type;
+
 @end
 
 @implementation SPGooglePlacesAutocompletePlace
